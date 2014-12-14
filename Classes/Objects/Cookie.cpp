@@ -8,7 +8,11 @@
 #include "Cookie.h"
 
 void Cookie::init(int column, int row, CookieType cookieType) {
-    this.column = column;
-    this.row = row;
-    this.cookieType = cookieType;
+    this->column = column;
+    this->row = row;
+    this->cookieType = cookieType;
+}
+
+Cookie::Cookie() {
+
 }

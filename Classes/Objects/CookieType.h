@@ -16,6 +16,7 @@ enum Type {
 class CookieType {
 public:
     Type type;
+    CookieType();
     CookieType(int type);
     static CookieType random();
     std::string getSpriteName();

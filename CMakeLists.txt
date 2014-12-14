@@ -49,6 +49,9 @@ set(GAME_SRC
   proj.ios_mac/ios/AppController.mm
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
+  Classes/Objects/Cookie.cpp
+  Classes/Objects/CookieType.cpp
+  Classes/Level.cpp
 )
 set(GAME_HEADERS
   Classes/AppDelegate.h
@@ -63,6 +66,9 @@ set(GAME_SRC
   proj.ios_mac/mac/main.cpp
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
+  Classes/Objects/Cookie.cpp
+  Classes/Objects/CookieType.cpp
+  Classes/Level.cpp
 )
 set(GAME_HEADERS
   Classes/AppDelegate.h
@@ -73,6 +79,9 @@ set(GAME_SRC
   proj.linux/main.cpp
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
+  Classes/Objects/Cookie.cpp
+  Classes/Objects/CookieType.cpp
+  Classes/Level.cpp
 )
 elseif ( WIN32 )
 set(GAME_SRC
@@ -81,6 +90,9 @@ set(GAME_SRC
   proj.win32/resource.h
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
+  Classes/Objects/Cookie.cpp
+  Classes/Objects/CookieType.cpp
+  Classes/Level.cpp
 )
 endif()
 

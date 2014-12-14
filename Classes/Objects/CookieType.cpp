@@ -7,6 +7,9 @@
 
 #include "CookieType.h"
 
+CookieType::CookieType() {
+
+}
 CookieType::CookieType(int type) {
     this->type = Type(type);
 }
@@ -17,17 +20,12 @@ CookieType CookieType::random() {
 }
 
 std::string CookieType::getSpriteName(){
-    std::string sprites = [
-    "Croissant",
-    "Cupcake",
-    "Danish",
-    "Donut",
-    "Macaroon",
-    "SugarCookie"];
-    
-    return sprites[this->type - 1];
+    std::string sprites[] = {"Croissant", "Cupcake", "Danish", "Donut", "Macaroon", "SugarCookie"};
+    return sprites[this->type - 1] + ".png";
 }
  
 std::string CookieType::getHighlightedSpriteName() {
-  return getSpriteName() + "-Highlighted";
+  return getSpriteName() + "-Highlighted.png";
 }
+
+

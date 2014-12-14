@@ -9,13 +9,15 @@
 #define	COOKIE_H
 
 #include "../cocos2d.h"
+#include "CookieType.h"
 class Cookie {
     
 public:
     int column;
     int row;
     CookieType cookieType;
-    cocos2d::Sprite sprite;
+    cocos2d::Sprite* sprite;
+    Cookie();
  
   void init(int column, int row, CookieType cookieType);
 private:
