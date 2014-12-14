@@ -82,6 +82,8 @@ set(GAME_SRC
   Classes/Objects/Cookie.cpp
   Classes/Objects/CookieType.cpp
   Classes/Level.cpp
+  Classes/Objects/Tile.cpp
+  Classes/libs/json/jsoncpp.cpp
 )
 elseif ( WIN32 )
 set(GAME_SRC

@@ -6,6 +6,26 @@
  */
 
 #include "Level.h"
+#include "libs/json/json/json.h"
+USING_NS_CC;
+Level* Level::createWithFile(std::string filename) {
+    Level* level = new Level();
+    
+//    unsigned ssize_t filesize = 0;
+    std::string content;
+    std::string fullPath = "levels/Level_3.json";
+
+    unsigned char* fileData = FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", 0);
+    content.append((char*)fileData);
+    delete[] fileData;
+
+    Json::Value jsonresult;
+    Json::Reader reader;
+    bool parsingSuccessful = reader.parse( content, jsonresult );
+
+    return level;
+}
+
 
 Cookie* Level::cookieAt(int col, int row) {
      return _cookies[col][row];
