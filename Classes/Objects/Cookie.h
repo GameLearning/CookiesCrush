@@ -9,9 +9,6 @@
 #define	COOKIE_H
 
 #include "../cocos2d.h"
-enum CookieType {
-  Unknown = 0, Croissant, Cupcake, Danish, Donut, Macaroon, SugarCookie
-};
 class Cookie {
     
 public:
