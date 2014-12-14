@@ -44,7 +44,7 @@ bool HelloWorld::init()
     
     this->addChild(cookiesLayer);
     
-    Level* level = new Level();
+    Level* level = Level::createWithFile("levels/Level_3.json");
     std::set<Cookie*> cookies = level->shuffle();
     addSpritesForCookies(cookies);
     cookiesLayer->setPosition(visibleSize.width/2 - (TileWidth * Level::NumColumns) /2,visibleSize.height/2- (TileHeight * Level::NumRows) /2);

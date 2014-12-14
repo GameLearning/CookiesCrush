@@ -11,17 +11,25 @@ USING_NS_CC;
 Level* Level::createWithFile(std::string filename) {
     Level* level = new Level();
     
-//    unsigned ssize_t filesize = 0;
     std::string content;
-    std::string fullPath = "levels/Level_3.json";
-
-    unsigned char* fileData = FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", 0);
+    ssize_t size = 0;
+    unsigned char* fileData = FileUtils::getInstance()->getFileData(filename.c_str(), "r", &size);
     content.append((char*)fileData);
     delete[] fileData;
 
     Json::Value jsonresult;
     Json::Reader reader;
     bool parsingSuccessful = reader.parse( content, jsonresult );
+    
+    const Json::Value tilesJson = jsonresult["tiles"];
+    for ( int c = 0; c < tilesJson.size(); ++c ){
+        for(int r = 0; r < tilesJson[c].size(); ++r){
+            if (tilesJson[c][r].asInt() == 1){
+                Game::Tile* title = new Game::Tile();
+                level->_tiles[c][r] = title;
+            }
+        }
+    }
 
     return level;
 }
@@ -39,9 +47,11 @@ std::set<Cookie*> Level::createInitialCookies() {
     std::set<Cookie*> set;
     for(int c = 0; c < NumColumns; c++) {
         for(int r = 0; r < NumRows; r++) {
-            CookieType type = CookieType::random();
-            Cookie* cookie = this->createCookie(c,r,type);
-            set.insert(cookie);
+            if(_tiles[c][r] != nullptr){
+                CookieType type = CookieType::random();
+                Cookie* cookie = this->createCookie(c,r,type);
+                set.insert(cookie);
+            }
         }
     }
     return set;

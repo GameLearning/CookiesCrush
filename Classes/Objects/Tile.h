@@ -7,7 +7,7 @@
 
 #ifndef TILE_H
 #define	TILE_H
-
+namespace Game{
 class Tile {
 public:
     Tile();
@@ -16,6 +16,7 @@ public:
 private:
 
 };
+}
 
 #endif	/* TILE_H */
 

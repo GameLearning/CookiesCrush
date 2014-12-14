@@ -19,10 +19,10 @@ public:
     std::set<Cookie*> shuffle();
     
     Cookie* cookieAt(int col, int row);
-    Tile* tileAt(int col, int row);
+    Game::Tile* tileAt(int col, int row);
     
     Cookie *_cookies[NumColumns][NumRows];
-    Tile *_tiles[NumColumns][NumRows];
+    Game::Tile *_tiles[NumColumns][NumRows];
 private:
     std::set<Cookie*> createInitialCookies();
     Cookie* createCookie(int col, int row, CookieType type);

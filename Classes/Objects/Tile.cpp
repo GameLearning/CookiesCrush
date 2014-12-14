@@ -7,12 +7,12 @@
 
 #include "Tile.h"
 
-Tile::Tile() {
+Game::Tile::Tile() {
 }
 
-Tile::Tile(const Tile& orig) {
+Game::Tile::Tile(const Tile& orig) {
 }
 
-Tile::~Tile() {
+Game::Tile::~Tile() {
 }
 
