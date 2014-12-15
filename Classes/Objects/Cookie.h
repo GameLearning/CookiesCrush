@@ -18,6 +18,7 @@ public:
     CookieType cookieType;
     cocos2d::Sprite* sprite;
     Cookie();
+    const char* toString();
  
   void init(int column, int row, CookieType cookieType);
 private:

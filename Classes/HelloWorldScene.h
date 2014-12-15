@@ -15,14 +15,23 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+
+    virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* unused_event);
+    virtual void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* unused_event);
+    virtual void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* unused_event);
 private:
+    void initTouchSystem();
     void addSpritesForCookies(std::set<Cookie*> cookies);
     cocos2d::Vec2 pointFor(int col, int row);
     void addTiles();
+    bool setGridPostion(cocos2d::Vec2 loc,int& column, int& row);
+    void trySwap(int horzDelta, int vertDelta);
     
     cocos2d::SpriteBatchNode* cookiesLayer;
     cocos2d::SpriteBatchNode* tilesLayer;
     Level* level;
+    int fromColumn, fromRow;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
