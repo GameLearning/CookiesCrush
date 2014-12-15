@@ -163,9 +163,17 @@ void HelloWorld::trySwap(int horzDelta, int vertDelta) {
     
     Cookie* toCookie = level->cookieAt(toColumn, toRow);
     if ( toCookie == nullptr) return;
-    
-    
+
     Cookie* fromCookie = level->cookieAt(fromColumn, fromRow);
-     
     CCLog("Swape %s with %s",fromCookie->toString() , toCookie->toString());
+    
+    auto animteA = MoveTo::create(0.3f, toCookie->sprite->getPosition());
+    auto animteB = MoveTo::create(0.3f, fromCookie->sprite->getPosition());
+    
+    toCookie->sprite->runAction(animteB);
+    fromCookie->sprite->runAction(animteA);
+    
+    level->_cookies[toColumn][toRow] = fromCookie;
+    level->_cookies[fromColumn][fromRow] = toCookie;
 }
+
