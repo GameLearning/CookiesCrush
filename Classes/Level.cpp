@@ -36,7 +36,11 @@ Level* Level::createWithFile(std::string filename) {
 
 
 Cookie* Level::cookieAt(int col, int row) {
-     return _cookies[col][row];
+    return _cookies[col][row];
+}
+
+Game::Tile* Level::tileAt(int col, int row) {
+    return _tiles[col][row];
 }
 
 std::set<Cookie*> Level::shuffle() {

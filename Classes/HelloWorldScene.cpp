@@ -1,6 +1,5 @@
 #include "HelloWorldScene.h"
 #include "Objects/CookieType.h"
-#include "Level.h"
 
 USING_NS_CC;
 
@@ -37,18 +36,38 @@ bool HelloWorld::init()
     Sprite* bg = Sprite::create("Background.png");
     bg->setPosition(visibleSize.width/2,visibleSize.height/2);
     this->addChild(bg);
+    
+    level = Level::createWithFile("levels/Level_3.json");
+    std::set<Cookie*> cookies = level->shuffle();
 
     SpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("cookies_sprites.plist");
+    
     cookiesLayer = SpriteBatchNode::create("cookies_sprites.png",100);
     cookiesLayer->setAnchorPoint(Vec2(0,0));
+    cookiesLayer->setPosition(visibleSize.width/2 - (TileWidth * Level::NumColumns) /2,visibleSize.height/2- (TileHeight * Level::NumRows) /2);
     
+    tilesLayer = SpriteBatchNode::create("cookies_sprites.png",100);
+    tilesLayer->setAnchorPoint(Vec2(0,0));
+    tilesLayer->setPosition(cookiesLayer->getPosition());
+    
+    this->addChild(tilesLayer);
     this->addChild(cookiesLayer);
     
-    Level* level = Level::createWithFile("levels/Level_3.json");
-    std::set<Cookie*> cookies = level->shuffle();
+    addTiles();
     addSpritesForCookies(cookies);
-    cookiesLayer->setPosition(visibleSize.width/2 - (TileWidth * Level::NumColumns) /2,visibleSize.height/2- (TileHeight * Level::NumRows) /2);
     return true;
+}
+
+void HelloWorld::addTiles() {
+    for(int c = 0; c < Level::NumColumns; c++) {
+        for(int r = 0; r < Level::NumRows; r++) {
+            if(level->tileAt(c,r) != nullptr){
+                Sprite *sprite = Sprite::createWithSpriteFrameName("Tile.png");
+                sprite->setPosition(pointFor(c, r));
+                tilesLayer->addChild(sprite);
+            }
+        }
+    }
 }
 
 void HelloWorld::addSpritesForCookies(std::set<Cookie*> cookies) {

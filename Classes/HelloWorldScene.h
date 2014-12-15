@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Objects/Cookie.h"
+#include "Level.h"
 class HelloWorld : public cocos2d::Layer
 {
 public:
@@ -14,14 +15,14 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
-    
-    
-    
 private:
     void addSpritesForCookies(std::set<Cookie*> cookies);
     cocos2d::Vec2 pointFor(int col, int row);
+    void addTiles();
     
     cocos2d::SpriteBatchNode* cookiesLayer;
+    cocos2d::SpriteBatchNode* tilesLayer;
+    Level* level;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
