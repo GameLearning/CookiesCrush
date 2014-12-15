@@ -52,7 +52,24 @@ std::set<Cookie*> Level::createInitialCookies() {
     for(int c = 0; c < NumColumns; c++) {
         for(int r = 0; r < NumRows; r++) {
             if(_tiles[c][r] != nullptr){
-                CookieType type = CookieType::random();
+                CookieType type;
+                int c1,c2,r1,r2 = 0;
+                if((c >= 2 &&  r >= 2)){
+                    if( _cookies[c - 1][r] != nullptr ) c1 = _cookies[c - 1][r]->cookieType.type;
+                    if( _cookies[c - 2][r] != nullptr ) c2 = _cookies[c - 2][r]->cookieType.type;
+                    
+                    if(_cookies[c][r - 1] != nullptr ) r1 = _cookies[c][r - 1]->cookieType.type;
+                    if(_cookies[c][r - 2] != nullptr ) r2 = _cookies[c][r - 2]->cookieType.type;
+                }
+                do{
+                    type = CookieType::random();
+                }while
+                (
+                    (c > 2 &&  r > 2) && (
+                        (c1 == type.type && c2 == type.type/*&& _cookies[c - 2][r]->cookieType.type == type.type*/) ||
+                        (r1 == type.type && r2 == type.type /*&& _cookies[c][r - 2]->cookieType.type == type.type*/ )
+                    )
+                );
                 Cookie* cookie = this->createCookie(c,r,type);
                 set.insert(cookie);
             }
